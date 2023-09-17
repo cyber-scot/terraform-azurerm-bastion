@@ -1,16 +1,5 @@
 
 ```hcl
-data "azurerm_resource_group" "vnet_rg_lookup" {
-  count                = var.create_bastion_subnet == true ? 1 : 0
-  name                 = var.vnet_rg_name
-}
-
-data "azurerm_virtual_network" "vnet_lookup" {
-  count               = var.create_bastion_subnet == true ? 1 : 0
-  name                = var.vnet_name
-  resource_group_name = data.azurerm_resource_group.vnet_rg_lookup[0].name
-}
-
 locals {
   requires_external_subnet = var.create_bastion_subnet == false && var.external_subnet_id == null
 }
@@ -18,8 +7,8 @@ locals {
 resource "azurerm_subnet" "bastion_subnet" {
   count                = var.create_bastion_subnet == true ? 1 : 0
   name                 = var.bastion_subnet_name # Must be AzureBastionSubnet
-  resource_group_name  = try(data.azurerm_virtual_network.vnet_lookup[0].resource_group_name, var.vnet_rg_name)
-  virtual_network_name = try(data.azurerm_virtual_network.vnet_lookup[0].name, var.vnet_name)
+  resource_group_name  = try(var.vnet_rg_name, null)
+  virtual_network_name = try(var.vnet_name, null)
   address_prefixes     = [var.bastion_subnet_range]
 
   timeouts {
@@ -58,20 +47,18 @@ resource "azurerm_network_security_rule" "bastion_nsg" {
   #tfsec:ignore:azure-network-no-public-egress
   destination_address_prefix = each.value.destination_address_prefix
 
-  resource_group_name         = azurerm_network_security_group.bastion_nsg.resource_group_name
-  network_security_group_name = azurerm_network_security_group.bastion_nsg.name
+  resource_group_name         = azurerm_network_security_group.bastion_nsg[0].resource_group_name
+  network_security_group_name = azurerm_network_security_group.bastion_nsg[0].name
 }
 
 #Fix for https://github.com/terraform-providers/terraform-provider-azurerm/issues/5232
 resource "azurerm_subnet_network_security_group_association" "bastion_nsg_association" {
-  count                = var.create_bastion_subnet == true && var.create_bastion_nsg == true ? 1 : 0
+  count      = var.create_bastion_subnet == true && var.create_bastion_nsg == true ? 1 : 0
   depends_on = [azurerm_network_security_rule.bastion_nsg]
 
   subnet_id                 = azurerm_subnet.bastion_subnet[0].id
   network_security_group_id = azurerm_network_security_group.bastion_nsg[0].id
-
 }
-
 
 resource "azurerm_public_ip" "bastion_pip" {
   name                = var.bastion_pip_name != null ? var.bastion_pip_name : "pip-${var.bastion_host_name}"
@@ -130,8 +117,6 @@ No modules.
 | [azurerm_public_ip.bastion_pip](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip) | resource |
 | [azurerm_subnet.bastion_subnet](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet) | resource |
 | [azurerm_subnet_network_security_group_association.bastion_nsg_association](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet_network_security_group_association) | resource |
-| [azurerm_resource_group.vnet_rg_lookup](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/resource_group) | data source |
-| [azurerm_virtual_network.vnet_lookup](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/virtual_network) | data source |
 
 ## Inputs
 

@@ -1,4 +1,5 @@
 #tfsec:ignore:azure-network-no-public-egress
+
 variable "azure_bastion_nsg_list" {
   default = {
     "AllowHttpsInbound"                       = { priority = "120", direction = "Inbound", source_port = "*", destination_port = "443", access = "Allow", protocol = "Tcp", source_address_prefix = "Internet", destination_address_prefix = "*" },
