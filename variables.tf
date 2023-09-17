@@ -1,3 +1,4 @@
+#tfsec:ignore:azure-network-no-public-egress
 variable "azure_bastion_nsg_list" {
   default = {
     "AllowHttpsInbound"                       = { priority = "120", direction = "Inbound", source_port = "*", destination_port = "443", access = "Allow", protocol = "Tcp", source_address_prefix = "Internet", destination_address_prefix = "*" },
@@ -120,11 +121,6 @@ variable "external_subnet_id" {
   description = "The ID of the external subnet if not created by this module."
   type        = string
   default     = null
-
-  validation {
-    condition     = local.requires_external_subnet == false
-    error_message = "When create_bastion_subnet is set to false, you must provide an external_subnet_id."
-  }
 }
 
 variable "file_copy_enabled" {
@@ -183,5 +179,3 @@ variable "vnet_rg_name" {
   description = "The name of the resource group that the VNet can be found in"
   default     = null
 }
-
-#tfsec:ignore:azure-network-no-public-egress

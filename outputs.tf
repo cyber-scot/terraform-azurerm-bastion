@@ -14,12 +14,12 @@ output "bastion_ip_configuration" {
 }
 
 output "bastion_nsg_id" {
-  value       = var.create_bastion_nsg == true ? azurerm_network_security_group.bastion_nsg.id : null
+  value       = var.create_bastion_nsg == true ? azurerm_network_security_group.bastion_nsg[0].id : null
   description = "The host name of the bastion"
 }
 
 output "bastion_nsg_name" {
-  value       = var.create_bastion_nsg == true ? azurerm_network_security_group.bastion_nsg.name : null
+  value       = var.create_bastion_nsg == true ? azurerm_network_security_group.bastion_nsg[0].name : null
   description = "The name of the bastion nsg"
 }
 
@@ -29,6 +29,6 @@ output "bastion_subnet_id" {
 }
 
 output "bastion_subnet_ip_range" {
-  value       = azurerm_subnet.bastion_subnet.address_prefixes
+  value       = var.create_bastion_subnet == true ? azurerm_subnet.bastion_subnet[0].address_prefixes : null
   description = "Bastion subnet IP range"
 }

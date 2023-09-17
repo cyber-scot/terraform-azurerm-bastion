@@ -51,7 +51,7 @@ module "nsg" {
 
 
 module "bastion" {
-  source = "../../"
+  source = "cyber-scot/bastion/azurerm"
 
   rg_name  = module.rg.rg_name
   location = module.rg.rg_location
@@ -64,5 +64,4 @@ module "bastion" {
   vnet_name                = module.network.vnet_name
   vnet_rg_name             = module.network.vnet_rg_name
   bastion_subnet_range     = "10.0.1.0/27"
-
 }
