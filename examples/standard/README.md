@@ -58,13 +58,13 @@ module "bastion" {
   location = module.rg.rg_location
   tags     = module.rg.rg_tags
 
-  bastion_host_name        = "bst-${var.short}-${var.loc}-${var.env}-01"
-  create_bastion_nsg       = true
-  create_bastion_nsg_rules = true
-  create_bastion_subnet    = true
-  bastion_subnet_target_vnet_name                = module.network.vnet_name
-  bastion_subnet_target_vnet_rg_name             = module.network.vnet_rg_name
-  bastion_subnet_range     = "10.0.1.0/27"
+  bastion_host_name                  = "bst-${var.short}-${var.loc}-${var.env}-01"
+  create_bastion_nsg                 = true
+  create_bastion_nsg_rules           = true
+  create_bastion_subnet              = true
+  bastion_subnet_target_vnet_name    = module.network.vnet_name
+  bastion_subnet_target_vnet_rg_name = module.network.vnet_rg_name
+  bastion_subnet_range               = "10.0.1.0/27"
 }
 ```
 ## Requirements
