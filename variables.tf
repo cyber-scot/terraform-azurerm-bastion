@@ -37,7 +37,7 @@ variable "bastion_nsg_location" {
 variable "bastion_nsg_name" {
   type        = string
   description = "The name for the NSG to be created with the AzureBastionSubnet"
-  default     = "AzureBastionSubnet"
+  default     = "null"
 }
 
 variable "bastion_nsg_rg_name" {
@@ -169,13 +169,13 @@ variable "tunneling_enabled" {
   default     = null
 }
 
-variable "vnet_name" {
+variable "bastion_subnet_target_vnet_name" {
   type        = string
   description = "The name of the VNet the bastion is intended to join"
   default     = null
 }
 
-variable "vnet_rg_name" {
+variable "bastion_subnet_target_vnet_rg_name" {
   type        = string
   description = "The name of the resource group that the VNet can be found in"
   default     = null

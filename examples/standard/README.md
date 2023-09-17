@@ -51,7 +51,6 @@ module "nsg" {
   }
 }
 
-
 module "bastion" {
   source = "cyber-scot/bastion/azurerm"
 
@@ -63,8 +62,8 @@ module "bastion" {
   create_bastion_nsg       = true
   create_bastion_nsg_rules = true
   create_bastion_subnet    = true
-  vnet_name                = module.network.vnet_name
-  vnet_rg_name             = module.network.vnet_rg_name
+  bastion_subnet_target_vnet_name                = module.network.vnet_name
+  bastion_subnet_target_vnet_rg_name             = module.network.vnet_rg_name
   bastion_subnet_range     = "10.0.1.0/27"
 }
 ```
