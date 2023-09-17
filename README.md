@@ -126,7 +126,7 @@ No modules.
 | <a name="input_bastion_host_ipconfig_name"></a> [bastion\_host\_ipconfig\_name](#input\_bastion\_host\_ipconfig\_name) | The IP Configuration name for the Azure Bastion | `string` | `null` | no |
 | <a name="input_bastion_host_name"></a> [bastion\_host\_name](#input\_bastion\_host\_name) | The name for the Bastion host in the portal | `string` | n/a | yes |
 | <a name="input_bastion_nsg_location"></a> [bastion\_nsg\_location](#input\_bastion\_nsg\_location) | The location of the bastion nsg | `string` | `null` | no |
-| <a name="input_bastion_nsg_name"></a> [bastion\_nsg\_name](#input\_bastion\_nsg\_name) | The name for the NSG to be created with the AzureBastionSubnet | `string` | `"AzureBastionSubnet"` | no |
+| <a name="input_bastion_nsg_name"></a> [bastion\_nsg\_name](#input\_bastion\_nsg\_name) | The name for the NSG to be created with the AzureBastionSubnet | `string` | `"null"` | no |
 | <a name="input_bastion_nsg_rg_name"></a> [bastion\_nsg\_rg\_name](#input\_bastion\_nsg\_rg\_name) | The resource group name which the NSG should be placed in | `string` | `null` | no |
 | <a name="input_bastion_pip_allocation_method"></a> [bastion\_pip\_allocation\_method](#input\_bastion\_pip\_allocation\_method) | The allocation method for the Public IP, default is Static | `string` | `"Static"` | no |
 | <a name="input_bastion_pip_location"></a> [bastion\_pip\_location](#input\_bastion\_pip\_location) | The location for the Bastion Public IP, default is UK South | `string` | `null` | no |
@@ -136,6 +136,8 @@ No modules.
 | <a name="input_bastion_sku"></a> [bastion\_sku](#input\_bastion\_sku) | The SKU of the bastion, default is Basic | `string` | `"Basic"` | no |
 | <a name="input_bastion_subnet_name"></a> [bastion\_subnet\_name](#input\_bastion\_subnet\_name) | The name of the Azure Bastion Subnet - note, this is a static value and should not be changed | `string` | `"AzureBastionSubnet"` | no |
 | <a name="input_bastion_subnet_range"></a> [bastion\_subnet\_range](#input\_bastion\_subnet\_range) | The IP Range for the Bastion Subnet - Note, Minimum is a /27 | `string` | `null` | no |
+| <a name="input_bastion_subnet_target_vnet_name"></a> [bastion\_subnet\_target\_vnet\_name](#input\_bastion\_subnet\_target\_vnet\_name) | The name of the VNet the bastion is intended to join | `string` | `null` | no |
+| <a name="input_bastion_subnet_target_vnet_rg_name"></a> [bastion\_subnet\_target\_vnet\_rg\_name](#input\_bastion\_subnet\_target\_vnet\_rg\_name) | The name of the resource group that the VNet can be found in | `string` | `null` | no |
 | <a name="input_copy_paste_enabled"></a> [copy\_paste\_enabled](#input\_copy\_paste\_enabled) | Whether copy paste is enabled, defaults to true | `bool` | `true` | no |
 | <a name="input_create_bastion_nsg"></a> [create\_bastion\_nsg](#input\_create\_bastion\_nsg) | Whether a NSG should be created for the Bastion, defaults to true | `bool` | `true` | no |
 | <a name="input_create_bastion_nsg_rules"></a> [create\_bastion\_nsg\_rules](#input\_create\_bastion\_nsg\_rules) | Whether the NSG rules for a bastion should be made, default is true | `bool` | `true` | no |
@@ -149,8 +151,6 @@ No modules.
 | <a name="input_shareable_link_enabled"></a> [shareable\_link\_enabled](#input\_shareable\_link\_enabled) | Whether the shareable link is enabled | `bool` | `null` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | The default tags to be assigned | `map(string)` | n/a | yes |
 | <a name="input_tunneling_enabled"></a> [tunneling\_enabled](#input\_tunneling\_enabled) | Whether the tunneling feature is enable | `bool` | `null` | no |
-| <a name="input_vnet_name"></a> [vnet\_name](#input\_vnet\_name) | The name of the VNet the bastion is intended to join | `string` | `null` | no |
-| <a name="input_vnet_rg_name"></a> [vnet\_rg\_name](#input\_vnet\_rg\_name) | The name of the resource group that the VNet can be found in | `string` | `null` | no |
 
 ## Outputs
 
