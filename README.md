@@ -126,7 +126,7 @@ No modules.
 | <a name="input_bastion_host_ipconfig_name"></a> [bastion\_host\_ipconfig\_name](#input\_bastion\_host\_ipconfig\_name) | The IP Configuration name for the Azure Bastion | `string` | `null` | no |
 | <a name="input_bastion_host_name"></a> [bastion\_host\_name](#input\_bastion\_host\_name) | The name for the Bastion host in the portal | `string` | n/a | yes |
 | <a name="input_bastion_nsg_location"></a> [bastion\_nsg\_location](#input\_bastion\_nsg\_location) | The location of the bastion nsg | `string` | `null` | no |
-| <a name="input_bastion_nsg_name"></a> [bastion\_nsg\_name](#input\_bastion\_nsg\_name) | The name for the NSG to be created with the AzureBastionSubnet | `string` | `"null"` | no |
+| <a name="input_bastion_nsg_name"></a> [bastion\_nsg\_name](#input\_bastion\_nsg\_name) | The name for the NSG to be created with the AzureBastionSubnet | `string` | `null` | no |
 | <a name="input_bastion_nsg_rg_name"></a> [bastion\_nsg\_rg\_name](#input\_bastion\_nsg\_rg\_name) | The resource group name which the NSG should be placed in | `string` | `null` | no |
 | <a name="input_bastion_pip_allocation_method"></a> [bastion\_pip\_allocation\_method](#input\_bastion\_pip\_allocation\_method) | The allocation method for the Public IP, default is Static | `string` | `"Static"` | no |
 | <a name="input_bastion_pip_location"></a> [bastion\_pip\_location](#input\_bastion\_pip\_location) | The location for the Bastion Public IP, default is UK South | `string` | `null` | no |

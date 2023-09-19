@@ -37,7 +37,7 @@ variable "bastion_nsg_location" {
 variable "bastion_nsg_name" {
   type        = string
   description = "The name for the NSG to be created with the AzureBastionSubnet"
-  default     = "null"
+  default     = null
 }
 
 variable "bastion_nsg_rg_name" {
