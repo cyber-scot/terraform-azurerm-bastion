@@ -4,7 +4,7 @@ locals {
 
 resource "azurerm_subnet" "bastion_subnet" {
   count                = var.create_bastion_subnet == true ? 1 : 0
-  name                 = var.bastion_subnet_name # Must be AzureBastionSubnet
+  name                 = try(var.bastion_subnet_name, "AzureBastionSubnet") # Must be AzureBastionSubnet
   resource_group_name  = try(var.bastion_subnet_target_vnet_name, null)
   virtual_network_name = try(var.bastion_subnet_target_vnet_rg_name, null)
   address_prefixes     = [var.bastion_subnet_range]
